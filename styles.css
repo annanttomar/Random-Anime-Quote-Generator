@@ -1,0 +1,413 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#myVideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(2px);
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+}
+
+.quote-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quote-box:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.quote-content {
+    margin: 30px 0;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#quote-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #fff;
+    margin-bottom: 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.anime-title {
+    font-size: 1.2rem;
+    color: #ffd700;
+    font-style: italic;
+    margin-top: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.secondary {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.secondary:hover {
+    background: rgba(255, 215, 0, 0.2);
+}
+
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease forwards;
+}
+
+.spotify-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    opacity: 0.7;
+}
+
+.spotify-player:hover {
+    transform: translateY(-5px) scale(1.02);
+    opacity: 1;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.spotify-player iframe {
+    border-radius: 12px;
+    background: transparent;
+}
+
+.showcase-panel {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.showcase-panel.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%) translateX(-30px);
+}
+
+.showcase-panel:hover {
+    transform: translateY(-50%) translateX(10px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.showcase-content h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.fa-snapchat:hover {
+    color: #FFFC00;
+}
+
+.fa-instagram:hover {
+    color: #E1306C;
+}
+
+.fa-tiktok:hover {
+    color: #00F2EA;
+}
+
+.showcase-text {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.feature i {
+    font-size: 1.2rem;
+    color: #ffd700;
+}
+
+@media (max-width: 1200px) {
+    .showcase-panel {
+        width: 240px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; 
+        padding: 20px; 
+        justify-content: flex-start; 
+    }
+
+    .showcase-panel {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 30px auto; 
+        border-radius: 15px;
+    }
+
+    .showcase-panel:hover {
+        transform: none;
+    }
+
+    .container {
+        margin: 0 auto 30px auto; 
+    }
+
+    .quote-box {
+        padding: 30px; 
+    }
+
+    .spotify-player {
+        position: relative; 
+        bottom: auto;
+        left: auto;
+        right: auto;
+        margin: 0 auto 30px auto;  
+        transform: scale(1); 
+        width: 90%; 
+        max-width: 300px;
+    }
+
+    .spotify-player:hover {
+        transform: translateY(-5px); 
+    }
+
+    .fullscreen-toggle {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin: 0 auto 20px auto; 
+    }
+}
+
+@media (max-width: 600px) {
+    .quote-box {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #quote-text {
+        font-size: 1.1rem;
+    }
+
+    .anime-title {
+        font-size: 1rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .spotify-player {
+        width: 95%;
+    }
+
+    .fullscreen-toggle .btn {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+}
+
+.fullscreen-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.fullscreen-toggle .btn {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fullscreen-toggle .btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+} 
